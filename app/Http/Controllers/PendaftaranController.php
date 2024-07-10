@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -29,11 +28,17 @@ class PendaftaranController extends Controller
                     <input type="checkbox" name="id_pendaftaran[]" value="'. $pendaftaran->id_pendaftaran .'">
                 ';
             })
-            ->addColumn('pasien', function ($pendaftaran) {
+            ->addColumn('kode_pasien', function ($pendaftaran) {
+                return $pendaftaran->pasien->kode_pasien;
+            })
+            ->addColumn('nama_pasien', function ($pendaftaran) {
                 return $pendaftaran->pasien->nama_pasien;
             })
             ->addColumn('klinik', function ($pendaftaran) {
                 return $pendaftaran->klinik->nama_klinik;
+            })
+            ->addColumn('nomor_antrian', function ($pendaftaran) {
+                return $pendaftaran->nomor_antrian;
             })
             ->addColumn('aksi', function ($pendaftaran) {
                 return '
@@ -41,7 +46,7 @@ class PendaftaranController extends Controller
                     <button type="button" onclick="deleteData(`'. route('pendaftaran.destroy', $pendaftaran->id_pendaftaran) .'`)" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button>
                 ';
             })
-            ->rawColumns(['select_all','aksi'])
+            ->rawColumns(['select_all', 'aksi'])
             ->make(true);
     }
 
@@ -51,18 +56,18 @@ class PendaftaranController extends Controller
             'id_pasien' => 'required|exists:pasien,id_pasien',
             'id_klinik' => 'required|exists:klinik,id_klinik',
         ]);
-    
+
         $nomor_antrian = Pendaftaran::where('id_klinik', $request->id_klinik)->max('nomor_antrian') + 1;
-    
+
         $pendaftaran = Pendaftaran::create([
             'id_pasien' => $request->id_pasien,
             'id_klinik' => $request->id_klinik,
             'nomor_antrian' => $nomor_antrian,
         ]);
-    
+
         return response()->json(['message' => 'Data berhasil disimpan', 'nomor_antrian' => $pendaftaran->nomor_antrian], 200);
     }
-    
+
     public function show(string $id)
     {
         $pendaftaran = Pendaftaran::find($id);
@@ -92,19 +97,18 @@ class PendaftaranController extends Controller
     }
 
     public function cetakPendaftaran(Request $request)
-{
-    $datapendaftaran = collect();
-    foreach ($request->id_pendaftaran as $id) {
-        $pendaftaran = Pendaftaran::with('pasien', 'klinik')->find($id);
-        $datapendaftaran->push($pendaftaran);
+    {
+        $datapendaftaran = collect();
+        foreach ($request->id_pendaftaran as $id) {
+            $pendaftaran = Pendaftaran::with('pasien', 'klinik')->find($id);
+            $datapendaftaran->push($pendaftaran);
+        }
+
+        $datapendaftaran = $datapendaftaran->chunk(2);
+        $no = 1;
+
+        $pdf = PDF::loadView('pendaftaran.cetak', compact('datapendaftaran', 'no'));
+        $pdf->setPaper(array(0, 0, 566.93, 850.39), 'portrait');
+        return $pdf->stream('pendaftaran.pdf');
     }
-
-    $datapendaftaran = $datapendaftaran->chunk(2);
-    $no = 1;
-
-    $pdf = PDF::loadView('pendaftaran.cetak', compact('datapendaftaran', 'no'));
-    $pdf->setPaper(array(0, 0, 566.93, 850.39), 'portrait');
-    return $pdf->stream('pendaftaran.pdf');
-}
-
 }

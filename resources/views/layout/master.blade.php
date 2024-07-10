@@ -18,20 +18,20 @@
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{ asset ('AdminLTE-3/plugins/jqvmap/jqvmap.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{  asset ('AdminLTE-3/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset ('AdminLTE-3/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset ('AdminLTE-3/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset ('AdminLTE-3/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset ('AdminLTE-3/plugins/summernote/summernote-bs4.min.css') }}">
-<!-- Select2 CSS -->
+  <!-- Select2 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <!-- DataTables Buttons CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
   <link rel="stylesheet" href="{{ asset('AdminLTE-3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('AdminLTE-3/plugins/datatables-responsive/css/responsive.bootstrap4.min.cs')}}s">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('AdminLTE-3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('AdminLTE-3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -44,7 +44,7 @@
   @includeIf('layout.navbar')
 
   <!-- Main Sidebar Container -->
- @includeIf('Layout.sidebar')
+  @includeIf('layout.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -60,7 +60,6 @@
               @section('breadcrumb')
                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>  
               @show
-              
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -75,7 +74,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
- @includeIf('layout.footer')
+  @includeIf('layout.footer')
 
 </div>
 <!-- ./wrapper -->
@@ -83,7 +82,6 @@
 <!-- jQuery -->
 <script src="{{ asset ('AdminLTE-3/plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset ('AdminLTE-3/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
@@ -109,7 +107,6 @@
 <script src="{{ asset ('AdminLTE-3/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
 <script src="{{ asset ('AdminLTE-3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<!-- Data Table-->
 <!-- DataTables JS -->
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('AdminLTE-3/plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -124,8 +121,6 @@
 <script src="{{ asset('AdminLTE-3/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{ asset('AdminLTE-3/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{ asset('AdminLTE-3/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -136,13 +131,8 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset ('AdminLTE-3/dist/js/pages/dashboard.js') }}"></script>
 <script src="{{ asset('AdminLTE-3/plugins/chart.js/Chart.min.js') }}"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset ('AdminLTE-3/dist/js/demo.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('AdminLTE-3/dist/js/pages/dashboard2.js') }}"></script>
 <!-- Validator -->
 <script src="{{ asset('js/validator.min.js')}}"></script>
-{@stack('script')
+@stack('script')
 </body>
 </html>

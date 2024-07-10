@@ -33,6 +33,7 @@
                                 <input type="checkbox" name="select_all" id="select_all">
                             </th>
                             <th width="4%">No</th>
+                            <th width="20%">Kode Pasien</th>
                             <th width="25%">Nama Pasien</th>
                             <th width="25%">Nama Klinik</th>
                             <th width="15%">Nomor Antrian</th>
@@ -70,7 +71,8 @@
             columns: [
                 {data: 'select_all', searchable: false, sortable: false},
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
-                {data: 'pasien'},
+                {data: 'kode_pasien'},
+                {data: 'nama_pasien'},
                 {data: 'klinik'},
                 {data: 'nomor_antrian'},
                 {data: 'aksi', searchable: false, sortable: false},

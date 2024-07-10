@@ -57,6 +57,14 @@
                   </li>
                 </ul>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('pemanggilan.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-solid fa-microphone"></i>
+                  <p>
+                    Pemanggilan
+                  </p>
+                </a>
+            </li>
               @endif
               @if (Auth::user()-> role == 'rekme')
               <li class="nav-header">Rekam Medis</li>
@@ -98,9 +106,9 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
+              <a href="{{ route('pasien.index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Data Pasien</p>
+                <p>Data Rekam Medis Pasien</p>
               </a>
             </li>
             <li class="nav-item">

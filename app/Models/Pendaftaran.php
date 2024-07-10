@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +10,18 @@ class Pendaftaran extends Model
 
     protected $table = 'pendaftaran';
     protected $primaryKey = 'id_pendaftaran';
-    protected $guarded = [];
+
+    // Menentukan kolom yang dapat diisi
+    protected $fillable = [
+        'id_pasien', 'id_klinik', 'nomor_antrian', 'status'
+    ];
+
+    // Constructor untuk mengatur nilai default 'status'
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setAttribute('status', 'menunggu');
+    }
 
     public function pasien()
     {

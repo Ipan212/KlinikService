@@ -1,6 +1,4 @@
 <?php
-
-// app/Models/Pasien.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,4 +23,13 @@ class Pasien extends Model
     {
         return $this->hasMany(RekamMedis::class, 'id_pasien', 'id_pasien');
     }
+    public function pendaftaran()
+    {
+        return $this->hasMany(Pendaftaran::class, 'id_pasien');
+    }
+    public function fisik()
+    {
+    return $this->hasMany(Fisik::class, 'id_pasien', 'id_pasien');
+    }
+
 }

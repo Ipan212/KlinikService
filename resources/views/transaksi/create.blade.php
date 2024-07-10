@@ -69,6 +69,12 @@
             <label for="total_biaya">Total Biaya</label>
             <input type="text" id="total_biaya" class="form-control" readonly>
         </div>
+        <!-- Tambahkan ini di form create dan edit -->
+        <div class="form-group">
+            <label for="tanggal_transaksi">Tanggal Transaksi</label>
+            <input type="date" name="tanggal_transaksi" id="tanggal_transaksi" class="form-control" value="{{ old('tanggal_transaksi', $transaksi->tanggal_transaksi ?? '') }}">
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>

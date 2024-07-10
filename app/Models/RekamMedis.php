@@ -1,17 +1,12 @@
 <?php
-// app/Models/RekamMedis.php
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class RekamMedis extends Model
 {
     use HasFactory;
-
     protected $table = 'rekam_medis';
     protected $primaryKey = 'id_rekam_medis';
-
     protected $fillable = [
         'id_pasien',
         'diagnosa',
@@ -19,7 +14,6 @@ class RekamMedis extends Model
         'instruksi_khusus',
         'rujukan'
     ];
-
     public function pasien()
     {
         return $this->belongsTo(Pasien::class, 'id_pasien', 'id_pasien');

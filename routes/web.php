@@ -4,7 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FisikController;
 use App\Http\Controllers\KlinikController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\PanggilanController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PasienMedisController;
 use App\Http\Controllers\PemeriksaanController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\RekamMedisController;
@@ -30,7 +32,7 @@ Route::get('/home', function(){
     return redirect('/admin');
 });
 Route::middleware(['auth'])->group(function(){
-    Route::get('/admin', [AdminController::class,'index']);
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/pendaftaran', [AdminController::class,'pendaftaran'])->middleware('userAkses:pendaftaran');
     Route::get('/admin/rekme', [AdminController::class,'rekme'])->middleware('userAkses:rekme');
     Route::get('/admin/transaksi', [AdminController::class,'transaksi'])->middleware('userAkses:transaksi');
@@ -39,6 +41,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/pasien/data', [PasienController::class,'data'])->name('pasien.data');
     Route::post('/pasien/cetak-pasien', [PasienController::class, 'cetakPasien'])->name('pasien.cetak_pasien');
     Route::resource('/pasien', PasienController::class);
+    Route::get('pasien/{id}/rekam-medis', [PasienController::class, 'showRekamMedis'])->name('pasien.showRekamMedis');
+
 
     Route::get('/klinik/data', [KlinikController::class, 'data'])->name('klinik.data');
     Route::resource('/klinik', KlinikController::class);
@@ -61,5 +65,14 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('rekam_medis', RekamMedisController::class);
 
     Route::resource('transaksi', TransaksiController::class);
+
+    Route::get('pemanggilan', [PanggilanController::class, 'index'])->name('pemanggilan.index');
+    Route::post('pemanggilan/panggil', [PanggilanController::class, 'panggil'])->name('pemanggilan.panggil');
+
+    Route::get('pemanggilan/called_patients', [PanggilanController::class, 'calledPatientsData'])->name('pemanggilan.called_patients');
+    Route::post('pemanggilan/call_again', [PanggilanController::class, 'callAgain'])->name('pemanggilan.call_again');
+
+    // Route::get('/pasien', [PasienMedisController::class, 'index'])->name('pasien.index');
+    // Route::get('/pasien/{id}/rekam_medis', [PasienMedisController::class, 'rekamMedis'])->name('pasien.rekam_medis');
 });
 

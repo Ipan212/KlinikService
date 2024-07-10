@@ -43,6 +43,11 @@
                         <label for="jumlah">Jumlah</label>
                         <input type="number" name="jumlah[]" class="form-control mb-2" min="1" value="{{ $obat->pivot->jumlah }}">
                     </div>
+                    <div class="form-group">
+                        <label for="tanggal_transaksi">Tanggal Transaksi</label>
+                        <input type="date" name="tanggal_transaksi" id="tanggal_transaksi" class="form-control" value="{{ old('tanggal_transaksi', $transaksi->tanggal_transaksi ?? '') }}">
+                    </div>
+
                 @endforeach
             </div>
         </div>

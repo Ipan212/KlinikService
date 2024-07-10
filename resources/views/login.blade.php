@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Login</title>
 </head>
+
 <body>
-    <div class="container py-5">
-        <div class="w-50 center border rounded px-3 py-3 mx-auto">
-        <h1>Login</h1>
+
+    <div class="container" id="container">
+        <!-- Star Register -->
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -21,21 +22,77 @@
                 </ul>
             </div>
         @endif
-        <form action="" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" value="{{ old('email') }}" name="email" class="form-control">
+        <div class="form-container sign-up">
+            <form action="" method="post">
+                @csrf
+                <h2>Sign In</h2>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>Use Your Email or Password </span>
+                <input type="text" value="{{ old('email') }}" name="email" id="email" placeholder="email">
+                <input type="password" name="password" id="password" placeholder="password">
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <!-- and Register -->
+        <!-- Star Login -->
+        <div class="form-container sign-in">
+            <form action="#" method="post">
+                <img src="{{ asset ('img/logo.jpg') }}" alt="klinik" width="100px">
+                <h1>Al-Basmallah</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><h2>S</h2></a>
+                    <a href="#" class="icon"><h2>E</h2></a>
+                    <a href="#" class="icon"><h2>L</h2></a>
+                    <a href="#" class="icon"><h2>A</h2></a>
+                    <a href="#" class="icon"><h2>M</h2></a>
+                    <a href="#" class="icon"><h2>A</h2></a>
+                    <a href="#" class="icon"><h2>T</h2></a>
+                </div>
+                <div class="social-icons">
+                    <a href="#" class="icon"><h2>D</h2></a>
+                    <a href="#" class="icon"><h2>A</h2></a>
+                    <a href="#" class="icon"><h2>T</h2></a>
+                    <a href="#" class="icon"><h2>A</h2></a>
+                    <a href="#" class="icon"><h2>N</h2></a>
+                    <a href="#" class="icon"><h2>G</h2></a>
+                </div>
+            </form>
+        </div>
+        <!-- And Login  -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Click here to return</p>
+                    <button class="hidden" id="login">Back</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1></h1>
+                    <p>Click here to Login</p>
+                    <button class="hidden" id="register">Sign In</button>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control">
-            </div>
-            <div class="mb-3 d-grid">
-                <button name="submit" type="submit" class="btn btn-primary">Login</button>
-            </div>
-        </form>
-    </div> 
+        </div>
     </div>
+
+    <script >
+const container = document.getElementById('container');
+const registerBtn = document.getElementById('register');
+const loginBtn = document.getElementById('login');
+
+registerBtn.addEventListener('click', () => {
+    container.classList.add("active");
+});
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove("active");
+});
+    </script>
 </body>
+
 </html>

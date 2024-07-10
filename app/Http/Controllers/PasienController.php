@@ -19,8 +19,8 @@ class PasienController extends Controller
     
     public function data()
     {
-        $pasien = pasien::orderBy('id_pasien')->get();
-
+        $pasien = Pasien::orderBy('id_pasien')->get();
+    
         return datatables()
             ->of($pasien)
             ->addIndexColumn()
@@ -33,17 +33,27 @@ class PasienController extends Controller
                 return '
                     <button type="button" onclick="editForm(`'. route('pasien.update', $pasien->id_pasien) .'`)" class="btn btn-xs btn-info "><i class="fa fas fa-edit"></i></button>
                     <button type="button" onclick="deleteData(`'. route('pasien.destroy', $pasien->id_pasien) .'`)" class="btn btn-xs btn-danger "><i class="fa fa-trash"></i></button>
+                    <a href="'. route('pasien.showRekamMedis', $pasien->id_pasien) .'" class="btn btn-xs btn-info"><i class="fa fas fa-eye"></i></a>
                 ';
             })
             ->rawColumns(['aksi', 'select_all', 'id_pasien'])
             ->make(true);
     }
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         
+    }
+    public function showRekamMedis($id)
+    {
+    $pasien = Pasien::findOrFail($id);
+    $rekamMedis = $pasien->rekamMedis()->with('obats', 'jenisPemeriksaan')->get();
+    $pemeriksaanFisik = $pasien->fisik()->get();
+
+    return view('pasien.show', compact('pasien', 'rekamMedis', 'pemeriksaanFisik'));
     }
 
     /**

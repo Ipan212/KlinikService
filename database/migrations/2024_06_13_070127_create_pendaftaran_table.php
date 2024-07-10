@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePendaftaranTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+   
     public function up(): void
     {
         Schema::create('pendaftaran', function (Blueprint $table) {
